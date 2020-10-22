@@ -11,6 +11,7 @@ public class SpelDemo {
 
         System.out.println("Test av peter");
 
+        System.out.println("Test av Ulf");
 
     }
 
