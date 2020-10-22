@@ -41,6 +41,9 @@ public class SpelDemo extends JFrame implements ActionListener {
         infoButtonField.add(newGameButton);
         infoButtonField.add(sortInRightOrder);
 
+        createPanelArray();
+        addTileButtonsInOrder();
+
         p.setLayout(new BorderLayout());
         p.add(infoButtonField, BorderLayout.SOUTH);
         p.add(gameBoard, BorderLayout.CENTER);
@@ -51,6 +54,17 @@ public class SpelDemo extends JFrame implements ActionListener {
         for(int i = 0; i < GRID_ROWS; i++){
             for(int j = 0; j < GRID_COLS; j++){
                 panelArray[i][j] = new JPanel();
+                gameBoard.add(panelArray[i][j]);
+            }
+        }
+    }
+    public void addTileButtonsInOrder(){
+        int count = 1;
+
+        for(int i = 0; i < GRID_ROWS; i++){
+            for(int j = 0; j < GRID_COLS; j++){
+                panelArray[i][j].add(new JButton(Integer.toString(count)));
+                count++;
             }
         }
     }
