@@ -70,7 +70,9 @@ public class SpelDemo extends JFrame implements ActionListener {
             for(int j = 0; j < GRID_COLS; j++){
                 panelArray[i][j].add(new JButton(Integer.toString(count)));
                 count++;
-                //if (GRID_ROWS )
+                if (GRID_ROWS * GRID_COLS == count){
+
+                    setBackground(Color.BLACK);}
             }
         }
     }
@@ -79,20 +81,20 @@ public class SpelDemo extends JFrame implements ActionListener {
         addTileButtonsInOrder();
 
 
-        List<JButton> objects = new ArrayList<>();
+        List<JPanel> objects = new ArrayList<>();
         for (int j = 0; j < GRID_ROWS; j++) {
             for (int k = 0; k < GRID_COLS; k++) {
-                objects.add(panelArray [j] [k].getComponent());
+                objects.add(panelArray [j] [k]);
             }
 
         }
 
         Collections.shuffle(objects);
-        int count = 0;
+        int index = 0;
         for (int i = 0; i < GRID_ROWS; i++) {
             for (int j = 0; j < GRID_COLS; j++) {
-                panelArray[i][j] = objects.get(count);
-                count++;
+                panelArray[i][j] = objects.get(index);
+                index++;
             }
         }
     }
