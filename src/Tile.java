@@ -1,6 +1,7 @@
 
 public class Tile {
 
+    //Tiles
     private int number;
 
     public Tile(int number){
