@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by: Ulf Nyberg
@@ -22,6 +24,8 @@ public class SpelDemo extends JFrame implements ActionListener {
     JButton newGameButton = new JButton("New Game");
     JButton sortInRightOrder = new JButton("Sort");
 
+    protected JPanel[][] panelArray = new JPanel[GRID_ROWS][GRID_COLS];
+
 
     SpelDemo(){
 
@@ -31,9 +35,8 @@ public class SpelDemo extends JFrame implements ActionListener {
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-
     }
-    private void constructGameBoard(){
+    public void constructGameBoard(){
 
         infoButtonField.add(newGameButton);
         infoButtonField.add(sortInRightOrder);
@@ -42,6 +45,14 @@ public class SpelDemo extends JFrame implements ActionListener {
         p.add(infoButtonField, BorderLayout.SOUTH);
         p.add(gameBoard, BorderLayout.CENTER);
         add(p);
+    }
+    public void createPanelArray(){
+
+        for(int i = 0; i < GRID_ROWS; i++){
+            for(int j = 0; j < GRID_COLS; j++){
+                panelArray[i][j] = new JPanel();
+            }
+        }
     }
 
 
