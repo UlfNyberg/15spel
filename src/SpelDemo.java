@@ -12,6 +12,7 @@ public class SpelDemo {
         System.out.println("Test av peter, nu är den editerad");
 
         System.out.println("Test av Ulf, test");
+        System.out.println("test");
 
     }
 
