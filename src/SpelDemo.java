@@ -9,9 +9,9 @@ public class SpelDemo {
 
     SpelDemo(){
 
-        System.out.println("Test av peter");
+        System.out.println("Test av peter, nu är den editerad");
 
-        System.out.println("Test av Ulf");
+        System.out.println("Test av Ulf, nu är den editerad");
 
     }
 
