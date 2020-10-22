@@ -13,12 +13,16 @@ import java.sql.SQLOutput;
  */
 public class SpelDemo extends JFrame implements ActionListener {
 
+    private final int gridRows = 4;
+    private final int gridCols = 4;
+
     JPanel p = new JPanel(new BorderLayout());
-    JPanel gameBoard = new JPanel(new GridLayout(4,4));
+    JPanel gameBoard = new JPanel(new GridLayout(gridRows,gridCols));
     JPanel infoButtonField = new JPanel();
 
     JButton newGameButton = new JButton("New Game");
     JButton sortInRightOrder = new JButton("Sort");
+
 
 
 
@@ -28,7 +32,7 @@ public class SpelDemo extends JFrame implements ActionListener {
         p.add(infoButtonField, BorderLayout.SOUTH);
         p.add(gameBoard, BorderLayout.CENTER);
         add(p);
-        pack();
+        setSize(400,400);
         setTitle("15-spel");
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -39,6 +43,7 @@ public class SpelDemo extends JFrame implements ActionListener {
 
     public static void main(String[] args) {
 
+        new SpelDemo();
 
     }
 
