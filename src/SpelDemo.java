@@ -1,3 +1,7 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.SQLOutput;
 
 /**
@@ -7,22 +11,35 @@ import java.sql.SQLOutput;
  * Project: 15spel
  * Copyright: MIT
  */
-public class SpelDemo {
+public class SpelDemo extends JFrame implements ActionListener {
+
+    JPanel p = new JPanel(new BorderLayout());
+    JPanel gameBoard = new JPanel(new GridLayout(4,4));
+    JPanel infoButtonField = new JPanel();
+
 
     SpelDemo(){
 
-        System.out.println("Test av peter, nu är den editerad");
+        p.setLayout(new BorderLayout());
+        p.add(infoButtonField, BorderLayout.SOUTH);
+        p.add(gameBoard, BorderLayout.CENTER);
+        add(p);
+        pack();
+        setTitle("15-spel");
+        setVisible(true);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        System.out.println("Test av Ulf, test");
-        System.out.println("test");
-
-        System.out.println("Ännu en text");
 
     }
 
 
     public static void main(String[] args) {
 
+
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
 
     }
 }
