@@ -84,20 +84,25 @@ public class SpelDemo extends JFrame implements ActionListener {
     public void addTileButtonsInDisOrder() {
         addTileButtonsInOrder();
 
-        List<JPanel> objects = new ArrayList<>();
+        List<JButton> objects = new ArrayList<>();
+
         for (int j = 0; j < GRID_ROWS; j++) {
             for (int k = 0; k < GRID_COLS; k++) {
-                objects.add(panelArray [j] [k]);
+                objects.add((JButton) panelArray [j] [k].getComponent(0));
             }
         }
 
         Collections.shuffle(objects);
+
         gameBoard.removeAll();
         int index = 0;
         for (int i = 0; i < GRID_ROWS; i++) {
             for (int j = 0; j < GRID_COLS; j++) {
-                panelArray[i][j] = objects.get(index);
-                gameBoard.add(panelArray[i][j]);
+                JButton knapp = objects.get(index);
+                panelArray[i][j].remove(0);
+                panelArray[i][j].add(knapp);
+                gameBoard.add(panelArray)
+                gameBoard.updateUI();
                 index++;
             }
         }
