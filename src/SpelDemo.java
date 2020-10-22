@@ -17,6 +17,10 @@ public class SpelDemo extends JFrame implements ActionListener {
     JPanel gameBoard = new JPanel(new GridLayout(4,4));
     JPanel infoButtonField = new JPanel();
 
+    JButton newGameButton = new JButton("New Game");
+    JButton sortInRightOrder = new JButton("Sort");
+
+
 
     SpelDemo(){
 
