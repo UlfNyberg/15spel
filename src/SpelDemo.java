@@ -1,8 +1,12 @@
+import netscape.javascript.JSObject;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -40,6 +44,7 @@ public class SpelDemo extends JFrame implements ActionListener {
 
         infoButtonField.add(newGameButton);
         infoButtonField.add(sortInRightOrder);
+        addInfoButtonActionListeners();
 
         createPanelArray();
         addTileButtonsInOrder();
@@ -65,19 +70,57 @@ public class SpelDemo extends JFrame implements ActionListener {
             for(int j = 0; j < GRID_COLS; j++){
                 panelArray[i][j].add(new JButton(Integer.toString(count)));
                 count++;
+                //if (GRID_ROWS )
             }
         }
     }
 
+    public void addTileButtonsInDisOrder() {
+        addTileButtonsInOrder();
 
-    public static void main(String[] args) {
 
-        new SpelDemo();
+        List<JButton> objects = new ArrayList<>();
+        for (int j = 0; j < GRID_ROWS; j++) {
+            for (int k = 0; k < GRID_COLS; k++) {
+                objects.add(panelArray [j] [k].getComponent());
+            }
 
+        }
+
+        Collections.shuffle(objects);
+        int count = 0;
+        for (int i = 0; i < GRID_ROWS; i++) {
+            for (int j = 0; j < GRID_COLS; j++) {
+                panelArray[i][j] = objects.get(count);
+                count++;
+            }
+        }
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
+        public static void main (String[]args){
 
+            new SpelDemo();
+
+        }
+
+        @Override
+        public void actionPerformed (ActionEvent e){
+
+        }
+
+        public void addInfoButtonActionListeners () {
+            newGameButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    addTileButtonsInDisOrder();
+                }
+            });
+            sortInRightOrder.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+
+                }
+            });
+
+        }
     }
-}
