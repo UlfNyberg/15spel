@@ -1,3 +1,5 @@
+import java.sql.SQLOutput;
+
 /**
  * Created by: Ulf Nyberg
  * Date: 2020-10-22
@@ -12,6 +14,8 @@ public class SpelDemo {
         System.out.println("Test av peter, nu är den editerad");
 
         System.out.println("Test av Ulf, test");
+
+        System.out.println("Ännu en text");
 
     }
 
