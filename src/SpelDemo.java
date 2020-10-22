@@ -9,7 +9,7 @@ public class SpelDemo {
 
     SpelDemo(){
 
-
+        System.out.println("Test av peter");
 
         
     }
