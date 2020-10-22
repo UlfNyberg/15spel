@@ -24,20 +24,21 @@ public class SpelDemo extends JFrame implements ActionListener {
     JButton sortInRightOrder = new JButton("Sort");
 
 
-
-
     SpelDemo(){
 
-        p.setLayout(new BorderLayout());
-        p.add(infoButtonField, BorderLayout.SOUTH);
-        p.add(gameBoard, BorderLayout.CENTER);
-        add(p);
+        constructGameBoard();
         setSize(400,400);
         setTitle("15-spel");
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 
+    }
+    private void constructGameBoard(){
+        p.setLayout(new BorderLayout());
+        p.add(infoButtonField, BorderLayout.SOUTH);
+        p.add(gameBoard, BorderLayout.CENTER);
+        add(p);
     }
 
 
