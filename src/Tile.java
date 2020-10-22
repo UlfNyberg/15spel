@@ -1,7 +1,7 @@
 
 public class Tile {
 
-    //Tiles
+    //Tiles kommentar
     private int number;
 
     public Tile(int number){
