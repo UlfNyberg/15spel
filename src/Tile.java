@@ -4,6 +4,10 @@ public class Tile {
     //Tiles kommentar
     private int number;
 
+    /**
+     * Konstruktor till tiles
+     * @param number
+     */
     public Tile(int number){
         this.number = number;
     }
