@@ -71,8 +71,10 @@ public class SpelDemo extends JFrame implements ActionListener {
                 panelArray[i][j].add(new JButton(Integer.toString(count)));
 
                 if (GRID_ROWS * GRID_COLS == count){
-                    panelArray[i][j].getComponent(0).setVisible(true);
-                    panelArray[i][j].getComponent(0).setBackground(Color.black);
+                    JButton lastbutton = (JButton) panelArray[i][i].getComponent(0);
+                    lastbutton.setOpaque(true);
+                    lastbutton.setBackground(Color.black);
+
                     //panelArray[i][j].setBackground(Color.black);
                 }
 
