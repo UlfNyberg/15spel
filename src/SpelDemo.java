@@ -2,7 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLOutput;
 
 /**
  * Created by: Ulf Nyberg
@@ -13,11 +12,11 @@ import java.sql.SQLOutput;
  */
 public class SpelDemo extends JFrame implements ActionListener {
 
-    private final int gridRows = 4;
-    private final int gridCols = 4;
+    private final int GRID_ROWS = 4;
+    private final int GRID_COLS = 4;
 
     JPanel p = new JPanel(new BorderLayout());
-    JPanel gameBoard = new JPanel(new GridLayout(gridRows,gridCols));
+    JPanel gameBoard = new JPanel(new GridLayout(GRID_ROWS, GRID_COLS));
     JPanel infoButtonField = new JPanel();
 
     JButton newGameButton = new JButton("New Game");
@@ -35,6 +34,10 @@ public class SpelDemo extends JFrame implements ActionListener {
 
     }
     private void constructGameBoard(){
+
+        infoButtonField.add(newGameButton);
+        infoButtonField.add(sortInRightOrder);
+
         p.setLayout(new BorderLayout());
         p.add(infoButtonField, BorderLayout.SOUTH);
         p.add(gameBoard, BorderLayout.CENTER);
