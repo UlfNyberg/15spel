@@ -88,8 +88,12 @@ public class GameGUI extends JFrame {
                 gameBoard.add(buttonArray[i][j]);
             }
         }
-        GameLogic.checkVictoryCondition(buttonArray);
+        updateMoveCounter();
         gameBoard.updateUI();
+    }
+
+    private void updateMoveCounter() {
+        countNr.setText(Integer.toString( GameLogic.getMoveCounter()) );
     }
 
     private void showVictoryMessage() {
