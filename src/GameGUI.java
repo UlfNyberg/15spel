@@ -14,7 +14,8 @@ public class GameGUI extends JFrame {
 
     private final int GRID_ROWS = 4;
     private final int GRID_COLS = 4;
-
+    private final int WINDOW_WIDTH = 400;
+    private final int WINDOW_HEIGHT = 400;
     JPanel p = new JPanel(new BorderLayout());
     JPanel gameBoard = new JPanel(new GridLayout(GRID_ROWS, GRID_COLS));
     JPanel infoButtonField = new JPanel();
@@ -27,7 +28,7 @@ public class GameGUI extends JFrame {
 
     GameGUI() {
         constructGameBoard();
-        setSize(400, 400);
+        setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         setTitle("15-spel");
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -111,7 +112,6 @@ public class GameGUI extends JFrame {
         for (int i = 0; i < GRID_ROWS; i++) {
             for (int j = 0; j < GRID_COLS; j++) {
                 buttonArray[i][j].addActionListener(AL);
-
             }
         }
     }
