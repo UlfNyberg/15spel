@@ -74,6 +74,7 @@ public class SpelDemo extends JFrame implements ActionListener {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        addTileActionListeners();
     }
     public void updateGameBoard(){
         gameBoard.removeAll();
@@ -112,7 +113,9 @@ public class SpelDemo extends JFrame implements ActionListener {
         ActionListener AL = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                GameLogic.swapWithBlackTile(buttonArray, (JButton) e.getSource());
+                buttonArray = GameLogic.swapWithBlackTile(buttonArray, (JButton) e.getSource());
+                updateGameBoard();
+
 
             }
         };
