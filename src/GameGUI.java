@@ -23,6 +23,7 @@ public class GameGUI extends JFrame {
 
     JButton newGameButton = new JButton("New Game");
     JButton sortInRightOrder = new JButton("Sort");
+    JButton exitGameButton = new JButton("Quit");
     JLabel countTextLabel = new JLabel("Move count: ");
     JLabel countNr = new JLabel("0");
 
@@ -48,7 +49,7 @@ public class GameGUI extends JFrame {
         infoButtonField.add(sortInRightOrder);
         infoButtonField.add(countTextLabel);
         infoButtonField.add(countNr);
-
+        infoButtonField.add(exitGameButton);
         addInfoButtonActionListeners();
 
         initiateButtonArray();
@@ -119,6 +120,12 @@ public class GameGUI extends JFrame {
                 updateGameBoard();
             }
         });
+        exitGameButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
     }
 
     public void addTileActionListeners() {
@@ -137,6 +144,7 @@ public class GameGUI extends JFrame {
         for (int i = 0; i < GRID_ROWS; i++) {
             for (int j = 0; j < GRID_COLS; j++) {
                 buttonArray[i][j].addActionListener(AL);
+
             }
         }
     }
