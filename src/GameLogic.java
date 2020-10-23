@@ -40,22 +40,22 @@ public class GameLogic {
         System.out.println("Black tile y= " + blackTileY);
 
         if(buttonArray[blackTileY - 1 ][blackTileX] == selectedTile) {
-            System.out.println("selectedTile är till vänster");
+            System.out.println("selectedTile är till ovanför");
             buttonArray[blackTileY][blackTileX] = selectedTile;
             buttonArray[blackTileY - 1 ][blackTileX] = blackTile;
         }
         if(buttonArray[blackTileY + 1 ][blackTileX] == selectedTile) {
-            System.out.println("selectedTile är till höger");
+            System.out.println("selectedTile är till nedanför");
             buttonArray[blackTileY][blackTileX] = selectedTile;
             buttonArray[blackTileY + 1 ][blackTileX] = blackTile;
         }
         if(buttonArray[blackTileY ][blackTileX - 1] == selectedTile) {
-            System.out.println("selectedTile är ovanför");
+            System.out.println("selectedTile är vänster");
             buttonArray[blackTileY][blackTileX] = selectedTile;
             buttonArray[blackTileY ][blackTileX - 1] = blackTile;
         }
         if(buttonArray[blackTileY ][blackTileX + 1] == selectedTile) {
-            System.out.println("selectedTile är nedanför");
+            System.out.println("selectedTile är höger");
             buttonArray[blackTileY][blackTileX] = selectedTile;
             buttonArray[blackTileY ][blackTileX + 1] = blackTile;
         }
