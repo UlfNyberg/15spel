@@ -22,8 +22,8 @@ public class GameLogic {
 
     public static JButton[][] swapWithBlackTile(JButton[][] buttonArray, JButton selectedTile){
 
-        int blackTileX = 0;
-        int blackTileY = 0;
+        int blackTileX = -1;
+        int blackTileY = -1;
         JButton blackTile = null;
 
         for (int i = 0; i < buttonArray.length ; i++) {
@@ -39,23 +39,23 @@ public class GameLogic {
         System.out.println("Black tile x= " + blackTileX);
         System.out.println("Black tile y= " + blackTileY);
 
-        if(buttonArray[blackTileY - 1 ][blackTileX] == selectedTile) {
-            System.out.println("selectedTile är till ovanför");
+        if((buttonArray[blackTileY - 1 ][blackTileX] == selectedTile) && !(blackTileY == 0)) {
+            System.out.println("selectedTile är ovanför");
             buttonArray[blackTileY][blackTileX] = selectedTile;
             buttonArray[blackTileY - 1 ][blackTileX] = blackTile;
         }
-        if(buttonArray[blackTileY + 1 ][blackTileX] == selectedTile) {
-            System.out.println("selectedTile är till nedanför");
+        else if((buttonArray[blackTileY + 1 ][blackTileX] == selectedTile) && !(blackTileY == buttonArray.length - 1)) {
+            System.out.println("selectedTile är nedanför");
             buttonArray[blackTileY][blackTileX] = selectedTile;
             buttonArray[blackTileY + 1 ][blackTileX] = blackTile;
         }
-        if(buttonArray[blackTileY ][blackTileX - 1] == selectedTile) {
-            System.out.println("selectedTile är vänster");
+        else if((buttonArray[blackTileY ][blackTileX - 1] == selectedTile) && !(blackTileX == 0)) {
+            System.out.println("selectedTile är till vänster");
             buttonArray[blackTileY][blackTileX] = selectedTile;
             buttonArray[blackTileY ][blackTileX - 1] = blackTile;
         }
-        if(buttonArray[blackTileY ][blackTileX + 1] == selectedTile) {
-            System.out.println("selectedTile är höger");
+        else if((buttonArray[blackTileY ][blackTileX + 1] == selectedTile) && !(blackTileX == buttonArray[0].length - 1)) {
+            System.out.println("selectedTile är till höger");
             buttonArray[blackTileY][blackTileX] = selectedTile;
             buttonArray[blackTileY ][blackTileX + 1] = blackTile;
         }
