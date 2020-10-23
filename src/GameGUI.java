@@ -79,8 +79,14 @@ public class GameGUI extends JFrame {
                 gameBoard.add(buttonArray[i][j]);
             }
         }
-        GameLogic.checkVictoryCondition(buttonArray);
+        if(GameLogic.checkVictoryCondition(buttonArray)){
+            showVictoryMessage();
+        }
         gameBoard.updateUI();
+    }
+
+    private void showVictoryMessage() {
+        JOptionPane.showMessageDialog(null,"Seger!");
     }
 
     public void addInfoButtonActionListeners() {
