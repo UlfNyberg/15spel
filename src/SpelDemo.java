@@ -76,28 +76,6 @@ public class SpelDemo extends JFrame implements ActionListener {
         gameBoard.updateUI();
     }
 
-    public void createButtonDisrder() {
-        Random random = new Random();
-
-        for (int i = GRID_ROWS - 1; i > 0; i--) {
-            for (int j = GRID_COLS - 1; j > 0; j--) {
-                int m = random.nextInt(i + 1);
-                int n = random.nextInt(j + 1);
-
-                JButton temp = buttonArray[i][j];
-
-                buttonArray[i][j] = buttonArray[m][n];
-                buttonArray[m][n] = temp;
-            }
-        }
-    }
-
-        public static void main (String[]args){
-
-            new SpelDemo();
-
-        }
-
         @Override
         public void actionPerformed (ActionEvent e){
 
@@ -107,7 +85,7 @@ public class SpelDemo extends JFrame implements ActionListener {
             newGameButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    createButtonDisrder();
+                    GameLogic.createButtonDisrder(buttonArray);
                     updateGameBoard();
                 }
             });
@@ -119,4 +97,10 @@ public class SpelDemo extends JFrame implements ActionListener {
             });
 
         }
+
+    public static void main (String[]args){
+
+        new SpelDemo();
+
     }
+}
