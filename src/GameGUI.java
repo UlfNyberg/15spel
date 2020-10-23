@@ -100,7 +100,7 @@ public class GameGUI extends JFrame {
     }
 
     private void showVictoryMessage() {
-        JOptionPane.showMessageDialog(null,"Seger!");
+        JOptionPane.showMessageDialog(null,"Seger! Du klarade det på " + GameLogic.getMoveCounter() + " drag!");
     }
 
     public void addInfoButtonActionListeners() {
@@ -129,6 +129,8 @@ public class GameGUI extends JFrame {
                 updateGameBoard();
                 if(GameLogic.checkVictoryCondition(buttonArray)){
                     showVictoryMessage();
+                    GameLogic.resetMoveCounter();
+                    updateGameBoard();
                 }
             }
         };
