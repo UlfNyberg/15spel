@@ -26,8 +26,13 @@ public class GameGUI extends JFrame {
 
 
     GameGUI() {
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        double screenWidth = screenSize.getWidth();
+        double screenHeight = screenSize.getHeight();
+
         constructGameBoard();
         setSize(400, 400);
+        setLocation((int) screenWidth /2 - 200, (int)screenHeight/2 - 200);
         setTitle("15-spel");
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
