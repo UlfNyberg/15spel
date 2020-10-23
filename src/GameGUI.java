@@ -16,19 +16,27 @@ public class GameGUI extends JFrame {
     private final int GRID_COLS = 4;
     private final int WINDOW_WIDTH = 400;
     private final int WINDOW_HEIGHT = 400;
+
     JPanel p = new JPanel(new BorderLayout());
     JPanel gameBoard = new JPanel(new GridLayout(GRID_ROWS, GRID_COLS));
     JPanel infoButtonField = new JPanel();
 
     JButton newGameButton = new JButton("New Game");
     JButton sortInRightOrder = new JButton("Sort");
+    JLabel countTextLabel = new JLabel("Move count: ");
+    JLabel countNr = new JLabel("0");
 
     protected JButton[][] buttonArray = new JButton[GRID_ROWS][GRID_COLS];
 
 
     GameGUI() {
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        double screenWidth = screenSize.getWidth();
+        double screenHeight = screenSize.getHeight();
+
         constructGameBoard();
         setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+        setLocation((int) screenWidth /2 - 200, (int)screenHeight/2 - 200);
         setTitle("15-spel");
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -38,6 +46,9 @@ public class GameGUI extends JFrame {
 
         infoButtonField.add(newGameButton);
         infoButtonField.add(sortInRightOrder);
+        infoButtonField.add(countTextLabel);
+        infoButtonField.add(countNr);
+
         addInfoButtonActionListeners();
 
         initiateButtonArray();
@@ -80,8 +91,16 @@ public class GameGUI extends JFrame {
                 gameBoard.add(buttonArray[i][j]);
             }
         }
-        GameLogic.checkVictoryCondition(buttonArray);
+        updateMoveCounter();
         gameBoard.updateUI();
+    }
+
+    private void updateMoveCounter() {
+        countNr.setText(Integer.toString( GameLogic.getMoveCounter()) );
+    }
+
+    private void showVictoryMessage() {
+        JOptionPane.showMessageDialog(null,"Seger!");
     }
 
     public void addInfoButtonActionListeners() {
@@ -89,6 +108,7 @@ public class GameGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 buttonArray = GameLogic.createButtonDisrder(buttonArray);
+                GameLogic.resetMoveCounter();
                 updateGameBoard();
             }
         });
@@ -107,6 +127,9 @@ public class GameGUI extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 buttonArray = GameLogic.swapWithBlackTile(buttonArray, (JButton) e.getSource());
                 updateGameBoard();
+                if(GameLogic.checkVictoryCondition(buttonArray)){
+                    showVictoryMessage();
+                }
             }
         };
         for (int i = 0; i < GRID_ROWS; i++) {
