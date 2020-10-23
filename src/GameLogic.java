@@ -55,4 +55,8 @@ public class GameLogic {
 
         return buttonArray;
     }
+
+    public static void checkVictoryCondition(JButton[][] buttonArray){
+
+    }
 }
