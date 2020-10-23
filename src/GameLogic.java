@@ -36,6 +36,9 @@ public class GameLogic {
             }
         }
 
+        System.out.println("Black tile x= " + blackTileX);
+        System.out.println("Black tile y= " + blackTileY);
+
         if(buttonArray[blackTileX - 1 ][blackTileY] == selectedTile) {
             System.out.println("selectedTile är till vänster");
             buttonArray[blackTileX][blackTileY] = selectedTile;
