@@ -85,9 +85,6 @@ public class GameGUI extends JFrame {
             }
         }
         gameBoard.updateUI();
-        if(GameLogic.checkVictoryCondition(buttonArray)){
-            showVictoryMessage();
-        }
     }
 
     private void showVictoryMessage() {
@@ -117,6 +114,9 @@ public class GameGUI extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 buttonArray = GameLogic.swapWithBlackTile(buttonArray, (JButton) e.getSource());
                 updateGameBoard();
+                if(GameLogic.checkVictoryCondition(buttonArray)){
+                    showVictoryMessage();
+                }
             }
         };
         for (int i = 0; i < GRID_ROWS; i++) {
