@@ -39,25 +39,33 @@ public class GameLogic {
         System.out.println("Black tile x= " + blackTileX);
         System.out.println("Black tile y= " + blackTileY);
 
-        if((buttonArray[blackTileY - 1 ][blackTileX] == selectedTile) && !(blackTileY == 0)) {
-            System.out.println("selectedTile är ovanför");
-            buttonArray[blackTileY][blackTileX] = selectedTile;
-            buttonArray[blackTileY - 1 ][blackTileX] = blackTile;
+        if(blackTileY != 0) {
+            if (buttonArray[blackTileY - 1][blackTileX] == selectedTile) {
+                System.out.println("selectedTile är ovanför");
+                buttonArray[blackTileY][blackTileX] = selectedTile;
+                buttonArray[blackTileY - 1][blackTileX] = blackTile;
+            }
         }
-        else if((buttonArray[blackTileY + 1 ][blackTileX] == selectedTile) && !(blackTileY == buttonArray.length - 1)) {
-            System.out.println("selectedTile är nedanför");
-            buttonArray[blackTileY][blackTileX] = selectedTile;
-            buttonArray[blackTileY + 1 ][blackTileX] = blackTile;
+        if(!(blackTileY >= buttonArray.length - 1)) {
+            if (buttonArray[blackTileY + 1][blackTileX] == selectedTile) {
+                System.out.println("selectedTile är nedanför");
+                buttonArray[blackTileY][blackTileX] = selectedTile;
+                buttonArray[blackTileY + 1][blackTileX] = blackTile;
+            }
         }
-        else if((buttonArray[blackTileY ][blackTileX - 1] == selectedTile) && !(blackTileX == 0)) {
-            System.out.println("selectedTile är till vänster");
-            buttonArray[blackTileY][blackTileX] = selectedTile;
-            buttonArray[blackTileY ][blackTileX - 1] = blackTile;
+        if(blackTileX != 0) {
+            if (buttonArray[blackTileY][blackTileX - 1] == selectedTile) {
+                System.out.println("selectedTile är till vänster");
+                buttonArray[blackTileY][blackTileX] = selectedTile;
+                buttonArray[blackTileY][blackTileX - 1] = blackTile;
+            }
         }
-        else if((buttonArray[blackTileY ][blackTileX + 1] == selectedTile) && !(blackTileX == buttonArray[0].length - 1)) {
-            System.out.println("selectedTile är till höger");
-            buttonArray[blackTileY][blackTileX] = selectedTile;
-            buttonArray[blackTileY ][blackTileX + 1] = blackTile;
+        if(!(blackTileX >= buttonArray[0].length - 1)) {
+            if (buttonArray[blackTileY][blackTileX + 1] == selectedTile) {
+                System.out.println("selectedTile är till höger");
+                buttonArray[blackTileY][blackTileX] = selectedTile;
+                buttonArray[blackTileY][blackTileX + 1] = blackTile;
+            }
         }
 
         return buttonArray;
