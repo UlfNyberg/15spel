@@ -21,6 +21,8 @@ public class GameGUI extends JFrame {
 
     JButton newGameButton = new JButton("New Game");
     JButton sortInRightOrder = new JButton("Sort");
+    JLabel countTextLabel = new JLabel("Move count: ");
+    JLabel countNr = new JLabel("0");
 
     protected JButton[][] buttonArray = new JButton[GRID_ROWS][GRID_COLS];
 
@@ -42,6 +44,8 @@ public class GameGUI extends JFrame {
 
         infoButtonField.add(newGameButton);
         infoButtonField.add(sortInRightOrder);
+        infoButtonField.add(countTextLabel);
+        infoButtonField.add(countNr);
         addInfoButtonActionListeners();
 
         initiateButtonArray();
@@ -84,6 +88,7 @@ public class GameGUI extends JFrame {
                 gameBoard.add(buttonArray[i][j]);
             }
         }
+        GameLogic.checkVictoryCondition(buttonArray);
         gameBoard.updateUI();
     }
 
