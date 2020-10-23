@@ -71,7 +71,44 @@ public class GameLogic {
         return buttonArray;
     }
 
-    public static void checkVictoryCondition(JButton[][] buttonArray){
+    public static boolean checkVictoryCondition(JButton[][] buttonArray){
+        boolean solved;
+
+        int counter = 1;
+
+        for (int row = 0; row < buttonArray.length; row++) {
+            for (int col = 0; col < buttonArray[row].length; col++) {
+                if ((buttonArray[row][col].getText().equals(Integer.toString(counter)))) {
+                    System.out.println("ButtonGetText " + buttonArray[row][col].getText());
+                    if (counter == (buttonArray.length*buttonArray[0].length-1)) {
+                        System.out.println("Grattis! Du har klarat spelet!");
+                        return (true);
+                    }
+
+                }
+                else
+                    break;
+                counter++;
+                //else
+                    //return false;
+            }
+        }
+
+        System.out.println(counter + " Countern");
+
+        /*
+        if (counter == (buttonArray.length*buttonArray[0].length-1)) {
+            System.out.println("Grattis! Du har klarat spelet!");
+            return (true);
+        }
+
+         */
+
+                return (false);
+
+
+        }
+
 
     }
-}
+

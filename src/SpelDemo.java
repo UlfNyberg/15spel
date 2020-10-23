@@ -84,6 +84,7 @@ public class SpelDemo extends JFrame implements ActionListener {
             }
         }
         gameBoard.updateUI();
+        GameLogic.checkVictoryCondition(buttonArray);
     }
 
 
