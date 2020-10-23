@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.*;
 import java.util.List;
 
@@ -55,6 +57,9 @@ public class SpelDemo extends JFrame implements ActionListener {
     public void createButtonArray(){
 
         int count = 1;
+        //Mac-anpassad svartknapp-metod med try/catch
+        try {
+            UIManager.setLookAndFeel( UIManager.getCrossPlatformLookAndFeelClassName() );
         for (int i = 0; i < GRID_COLS; i++) {
             for (int j = 0; j < GRID_ROWS; j++) {
                 if(!(count == (GRID_COLS*GRID_ROWS)))
@@ -65,6 +70,9 @@ public class SpelDemo extends JFrame implements ActionListener {
                 }
                 count++;
             }
+        }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
     public void updateGameBoard(){
@@ -77,8 +85,10 @@ public class SpelDemo extends JFrame implements ActionListener {
         gameBoard.updateUI();
     }
 
+
         @Override
         public void actionPerformed (ActionEvent e){
+
 
         }
 
@@ -97,8 +107,44 @@ public class SpelDemo extends JFrame implements ActionListener {
                     updateGameBoard();
                 }
             });
-
         }
+        public void addTileActionListeners () {
+        ActionListener AL = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                GameLogic.swapWithBlackTile(buttonArray, (JButton) e.getSource());
+
+            }
+        };
+        for (int i = 0; i < GRID_ROWS; i++) {
+            for (int j = 0; j < GRID_COLS; j++) {
+                buttonArray[i][j].addActionListener(AL);
+
+            }
+        }
+
+    }
+            /*
+            MouseAdapter musLyss = new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    GameLogic.swapWithBlackTile(buttonArray, (JButton) e.getComponent());
+                    if (e.getComponent().getClass() ==)
+                    super.mouseClicked(e);
+                }
+
+             */
+
+
+
+
+
+
+
+
+
+
+
 
     public static void main (String[]args){
 
