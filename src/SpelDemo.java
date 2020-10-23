@@ -4,9 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
+import java.util.*;
 import java.util.List;
 
 /**
@@ -28,7 +26,7 @@ public class SpelDemo extends JFrame implements ActionListener {
     JButton newGameButton = new JButton("New Game");
     JButton sortInRightOrder = new JButton("Sort");
 
-    protected JPanel[][] panelArray = new JPanel[GRID_ROWS][GRID_COLS];
+    protected JButton[][] buttonArray = new JButton[GRID_ROWS][GRID_COLS];
 
 
     SpelDemo(){
@@ -46,64 +44,50 @@ public class SpelDemo extends JFrame implements ActionListener {
         infoButtonField.add(sortInRightOrder);
         addInfoButtonActionListeners();
 
-        createPanelArray();
-        addTileButtonsInOrder();
+        createButtonArray();
+        updateGameBoard();
 
         p.setLayout(new BorderLayout());
         p.add(infoButtonField, BorderLayout.SOUTH);
         p.add(gameBoard, BorderLayout.CENTER);
         add(p);
     }
-    public void createPanelArray(){
+    public void createButtonArray(){
 
-        for(int i = 0; i < GRID_ROWS; i++){
-            for(int j = 0; j < GRID_COLS; j++){
-                panelArray[i][j] = new JPanel();
-                gameBoard.add(panelArray[i][j]);
-            }
-        }
-    }
-    public void addTileButtonsInOrder(){
         int count = 1;
-
-        for(int i = 0; i < GRID_ROWS; i++){
-            for(int j = 0; j < GRID_COLS; j++){
-                panelArray[i][j].add(new JButton(Integer.toString(count)));
-
-                if (GRID_ROWS * GRID_COLS == count){
-                    JButton knappen = (JButton) panelArray[i][j].getComponent(0);
-                    knappen.setOpaque(true);
-                    knappen.setBackground(Color.black);
+        for (int i = 0; i < GRID_COLS; i++) {
+            for (int j = 0; j < GRID_ROWS; j++) {
+                if(!(count == (GRID_COLS*GRID_ROWS)))
+                    buttonArray[i][j] = new JButton(Integer.toString(count));
+                else if(count == (GRID_ROWS*GRID_COLS)) {
+                    buttonArray[i][j] = new JButton("");
+                    buttonArray[i][j].setBackground(Color.black);
                 }
-
                 count++;
             }
         }
     }
-
-    public void addTileButtonsInDisOrder() {
-        addTileButtonsInOrder();
-
-        List<JButton> objects = new ArrayList<>();
-
-        for (int j = 0; j < GRID_ROWS; j++) {
-            for (int k = 0; k < GRID_COLS; k++) {
-                objects.add((JButton) panelArray [j] [k].getComponent(0));
-            }
-        }
-
-        Collections.shuffle(objects);
-
-        gameBoard.removeAll();
-        int index = 0;
+    public void updateGameBoard(){
         for (int i = 0; i < GRID_ROWS; i++) {
             for (int j = 0; j < GRID_COLS; j++) {
-                JButton knapp = objects.get(index);
-                panelArray[i][j].remove(0);
-                panelArray[i][j].add(knapp);
-                gameBoard.add(panelArray)
-                gameBoard.updateUI();
-                index++;
+                gameBoard.add(buttonArray[i][j]);
+            }
+        }
+        gameBoard.updateUI();
+    }
+
+    public void createButtonDisrder() {
+        Random random = new Random();
+
+        for (int i = GRID_ROWS - 1; i > 0; i--) {
+            for (int j = GRID_COLS - 1; j > 0; j--) {
+                int m = random.nextInt(i + 1);
+                int n = random.nextInt(j + 1);
+
+                JButton temp = buttonArray[i][j];
+
+                buttonArray[i][j] = buttonArray[m][n];
+                buttonArray[m][n] = temp;
             }
         }
     }
@@ -123,7 +107,8 @@ public class SpelDemo extends JFrame implements ActionListener {
             newGameButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    addTileButtonsInDisOrder();
+                    createButtonDisrder();
+                    updateGameBoard();
                 }
             });
             sortInRightOrder.addActionListener(new ActionListener() {
