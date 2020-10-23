@@ -105,6 +105,7 @@ public class GameGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 buttonArray = GameLogic.createButtonDisrder(buttonArray);
+                GameLogic.resetMoveCounter();
                 updateGameBoard();
             }
         });
