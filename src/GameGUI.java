@@ -26,13 +26,11 @@ public class GameGUI extends JFrame {
 
 
     GameGUI() {
-
         constructGameBoard();
         setSize(400, 400);
         setTitle("15-spel");
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-
     }
 
     public void constructGameBoard() {
@@ -41,7 +39,8 @@ public class GameGUI extends JFrame {
         infoButtonField.add(sortInRightOrder);
         addInfoButtonActionListeners();
 
-        createButtonArray();
+        initiateButtonArray();
+        buttonArray = GameLogic.createButtonDisrder(buttonArray);
         updateGameBoard();
 
         p.setLayout(new BorderLayout());
@@ -50,7 +49,7 @@ public class GameGUI extends JFrame {
         add(p);
     }
 
-    public void createButtonArray() {
+    public void initiateButtonArray() {
 
         int count = 1;
         //Mac-anpassad svartknapp-metod med try/catch
@@ -94,7 +93,7 @@ public class GameGUI extends JFrame {
         sortInRightOrder.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                createButtonArray();
+                initiateButtonArray();
                 updateGameBoard();
             }
         });
