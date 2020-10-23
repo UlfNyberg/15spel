@@ -30,8 +30,8 @@ public class GameLogic {
             for (int j = 0; j < buttonArray[i].length; j++) {
                 if(buttonArray[i][j].getText().equals("")){
                     blackTile = buttonArray[i][j];
-                    blackTileX = i;
-                    blackTileY = j;
+                    blackTileX = j;
+                    blackTileY = i;
                 }
             }
         }
@@ -39,25 +39,25 @@ public class GameLogic {
         System.out.println("Black tile x= " + blackTileX);
         System.out.println("Black tile y= " + blackTileY);
 
-        if(buttonArray[blackTileX - 1 ][blackTileY] == selectedTile) {
+        if(buttonArray[blackTileY - 1 ][blackTileX] == selectedTile) {
             System.out.println("selectedTile är till vänster");
-            buttonArray[blackTileX][blackTileY] = selectedTile;
-            buttonArray[blackTileX - 1 ][blackTileY] = blackTile;
+            buttonArray[blackTileY][blackTileX] = selectedTile;
+            buttonArray[blackTileY - 1 ][blackTileX] = blackTile;
         }
-        if(buttonArray[blackTileX + 1 ][blackTileY] == selectedTile) {
+        if(buttonArray[blackTileY + 1 ][blackTileX] == selectedTile) {
             System.out.println("selectedTile är till höger");
-            buttonArray[blackTileX][blackTileY] = selectedTile;
-            buttonArray[blackTileX + 1 ][blackTileY] = blackTile;
+            buttonArray[blackTileY][blackTileX] = selectedTile;
+            buttonArray[blackTileY + 1 ][blackTileX] = blackTile;
         }
-        if(buttonArray[blackTileX ][blackTileY - 1] == selectedTile) {
+        if(buttonArray[blackTileY ][blackTileX - 1] == selectedTile) {
             System.out.println("selectedTile är ovanför");
-            buttonArray[blackTileX][blackTileY] = selectedTile;
-            buttonArray[blackTileX ][blackTileY - 1] = blackTile;
+            buttonArray[blackTileY][blackTileX] = selectedTile;
+            buttonArray[blackTileY ][blackTileX - 1] = blackTile;
         }
-        if(buttonArray[blackTileX ][blackTileY + 1] == selectedTile) {
+        if(buttonArray[blackTileY ][blackTileX + 1] == selectedTile) {
             System.out.println("selectedTile är nedanför");
-            buttonArray[blackTileX][blackTileY] = selectedTile;
-            buttonArray[blackTileX ][blackTileY + 1] = blackTile;
+            buttonArray[blackTileY][blackTileX] = selectedTile;
+            buttonArray[blackTileY ][blackTileX + 1] = blackTile;
         }
 
         return buttonArray;
