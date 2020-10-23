@@ -19,4 +19,15 @@ public class GameLogic {
         }
         return buttonArray;
     }
+
+    public static JButton[][] swapWithBlackTile(JButton[][] buttonArray, JButton selectedTile){
+
+        int maxTiles = buttonArray.length * buttonArray[0].length;
+
+        if(selectedTile.getText().equals(Integer.toString(maxTiles))){
+            return buttonArray;
+        }
+
+        return buttonArray;
+    }
 }
