@@ -22,25 +22,35 @@ public class GameLogic {
 
     public static JButton[][] swapWithBlackTile(JButton[][] buttonArray, JButton selectedTile){
 
-        int maxTiles = buttonArray.length * buttonArray[0].length;
         int blackTileX = 0;
         int blackTileY = 0;
+        JButton blackTile;
 
-        //find black tile
         for (int i = 0; i < buttonArray.length ; i++) {
             for (int j = 0; j < buttonArray[i].length; j++) {
-                if(buttonArray[i][j].getText().equals(Integer.toString(maxTiles))){
+                if(buttonArray[i][j].getText().equals("")){
+                    blackTile = buttonArray[i][j];
                     blackTileX = i;
                     blackTileY = j;
                 }
             }
         }
-        //check surroundings for correct tile
-        if(buttonArray[blackTileX - 1 ][blackTileY] == selectedTile)
+
+        if(buttonArray[blackTileX - 1 ][blackTileY] == selectedTile) {
             buttonArray[blackTileX][blackTileY] = selectedTile;
-        //swap places
-        if(selectedTile.getText().equals( Integer.toString(maxTiles) )){
-            return buttonArray;
+            buttonArray[blackTileX - 1 ][blackTileY] = blackTile;
+        }
+        if(buttonArray[blackTileX + 1 ][blackTileY] == selectedTile) {
+            buttonArray[blackTileX][blackTileY] = selectedTile;
+            buttonArray[blackTileX + 1 ][blackTileY] = blackTile;
+        }
+        if(buttonArray[blackTileX ][blackTileY - 1] == selectedTile) {
+            buttonArray[blackTileX][blackTileY] = selectedTile;
+            buttonArray[blackTileX ][blackTileY - 1] = blackTile;
+        }
+        if(buttonArray[blackTileX ][blackTileY + 1] == selectedTile) {
+            buttonArray[blackTileX][blackTileY] = selectedTile;
+            buttonArray[blackTileX ][blackTileY + 1] = blackTile;
         }
 
         return buttonArray;
