@@ -78,6 +78,7 @@ public class GameLogic {
         if (hasMoved)
             moveCounter++;
 
+
         return buttonArray;
     }
 
