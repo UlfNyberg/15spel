@@ -79,6 +79,7 @@ public class GameGUI extends JFrame {
                 gameBoard.add(buttonArray[i][j]);
             }
         }
+        GameLogic.checkVictoryCondition(buttonArray);
         gameBoard.updateUI();
     }
 
