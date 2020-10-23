@@ -23,8 +23,23 @@ public class GameLogic {
     public static JButton[][] swapWithBlackTile(JButton[][] buttonArray, JButton selectedTile){
 
         int maxTiles = buttonArray.length * buttonArray[0].length;
+        int blackTileX = 0;
+        int blackTileY = 0;
 
-        if(selectedTile.getText().equals(Integer.toString(maxTiles))){
+        //find black tile
+        for (int i = 0; i < buttonArray.length ; i++) {
+            for (int j = 0; j < buttonArray[i].length; j++) {
+                if(buttonArray[i][j].getText().equals(Integer.toString(maxTiles))){
+                    blackTileX = i;
+                    blackTileY = j;
+                }
+            }
+        }
+        //check surroundings for correct tile
+        if(buttonArray[blackTileX - 1 ][blackTileY] == selectedTile)
+            buttonArray[blackTileX][blackTileY]
+        //swap places
+        if(selectedTile.getText().equals( Integer.toString(maxTiles) )){
             return buttonArray;
         }
 
