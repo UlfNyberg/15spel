@@ -116,6 +116,7 @@ public class GameLogic {
 
 
     public static void resetMoveCounter() {
+        moveCounter = 0;
     }
 }
 
