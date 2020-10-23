@@ -37,7 +37,7 @@ public class GameLogic {
         }
         //check surroundings for correct tile
         if(buttonArray[blackTileX - 1 ][blackTileY] == selectedTile)
-            buttonArray[blackTileX][blackTileY]
+            buttonArray[blackTileX][blackTileY] = selectedTile;
         //swap places
         if(selectedTile.getText().equals( Integer.toString(maxTiles) )){
             return buttonArray;
