@@ -24,7 +24,7 @@ public class GameLogic {
 
         int blackTileX = 0;
         int blackTileY = 0;
-        JButton blackTile;
+        JButton blackTile = null;
 
         for (int i = 0; i < buttonArray.length ; i++) {
             for (int j = 0; j < buttonArray[i].length; j++) {
