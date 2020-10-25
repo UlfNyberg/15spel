@@ -58,8 +58,13 @@ public class GameGUI extends JFrame {
         infoButtonFieldUpper.add(countTextLabel);
         infoButtonFieldUpper.add(countNr);
         infoButtonFieldUpper.add(exitGameButton);
-        addInfoButtonActionListeners();
 
+        infoButtonFieldLower.add(rowLabel);
+        infoButtonFieldLower.add(rowTextField);
+        infoButtonFieldLower.add(colLabel);
+        infoButtonFieldLower.add(colTextField);
+
+        addInfoButtonActionListeners();
         initiateButtonArray();
         buttonArray = GameLogic.createButtonDisorder(buttonArray);
         updateGameBoard();
