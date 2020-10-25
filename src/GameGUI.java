@@ -19,13 +19,21 @@ public class GameGUI extends JFrame {
 
     protected JPanel p = new JPanel(new BorderLayout());
     protected JPanel gameBoard = new JPanel(new GridLayout(GRID_ROWS, GRID_COLS));
-    protected JPanel infoButtonField = new JPanel();
+    protected JPanel infoButtonFieldUpper = new JPanel();
+    protected JPanel infoButtonFieldLower = new JPanel();
+    protected JPanel mainButtonField = new JPanel(new BorderLayout());
 
     protected JButton newGameButton = new JButton("New Game");
     protected JButton sortInRightOrder = new JButton("Sort");
     protected JButton exitGameButton = new JButton("Quit");
     protected JLabel countTextLabel = new JLabel("Move count: ");
     protected JLabel countNr = new JLabel("0");
+
+    protected JLabel rowLabel = new JLabel("Row");
+    protected JLabel colLabel = new JLabel("Col");
+    protected JTextField rowTextField = new JTextField(GRID_ROWS);
+    protected JTextField colTextField = new JTextField(GRID_COLS);
+
 
     protected JButton[][] buttonArray = new JButton[GRID_ROWS][GRID_COLS];
 
@@ -45,19 +53,22 @@ public class GameGUI extends JFrame {
 
     public void constructGameBoard() {
 
-        infoButtonField.add(newGameButton);
-        infoButtonField.add(sortInRightOrder);
-        infoButtonField.add(countTextLabel);
-        infoButtonField.add(countNr);
-        infoButtonField.add(exitGameButton);
+        infoButtonFieldUpper.add(newGameButton);
+        infoButtonFieldUpper.add(sortInRightOrder);
+        infoButtonFieldUpper.add(countTextLabel);
+        infoButtonFieldUpper.add(countNr);
+        infoButtonFieldUpper.add(exitGameButton);
         addInfoButtonActionListeners();
 
         initiateButtonArray();
         buttonArray = GameLogic.createButtonDisorder(buttonArray);
         updateGameBoard();
 
+        mainButtonField.add(infoButtonFieldUpper, BorderLayout.NORTH);
+        mainButtonField.add(infoButtonFieldLower, BorderLayout.SOUTH);
+
         p.setLayout(new BorderLayout());
-        p.add(infoButtonField, BorderLayout.SOUTH);
+        p.add(mainButtonField, BorderLayout.SOUTH);
         p.add(gameBoard, BorderLayout.CENTER);
         add(p);
     }
