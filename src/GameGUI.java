@@ -26,7 +26,7 @@ public class GameGUI extends JFrame {
     protected JButton newGameButton = new JButton("New Game");
     protected JButton sortInRightOrder = new JButton("Sort");
     protected JButton exitGameButton = new JButton("Quit");
-    protected JButton resizeGrid = new JButton("Resize");
+    protected JButton resizeGridButton = new JButton("Resize");
 
     protected JLabel countTextLabel = new JLabel("Move count: ");
     protected JLabel countNr = new JLabel("0");
@@ -36,9 +36,7 @@ public class GameGUI extends JFrame {
     protected JTextField rowTextField = new JTextField(null,"4",2);
     protected JTextField colTextField = new JTextField(null,"4",2);
 
-
     protected JButton[][] buttonArray = new JButton[GRID_ROWS][GRID_COLS];
-
 
     GameGUI() {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -65,7 +63,7 @@ public class GameGUI extends JFrame {
         infoButtonFieldLower.add(rowTextField);
         infoButtonFieldLower.add(colLabel);
         infoButtonFieldLower.add(colTextField);
-        infoButtonFieldLower.add(resizeGrid);
+        infoButtonFieldLower.add(resizeGridButton);
 
         addInfoButtonActionListeners();
         initiateButtonArray();
@@ -145,6 +143,25 @@ public class GameGUI extends JFrame {
                 System.exit(0);
             }
         });
+        resizeGridButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int row = GRID_ROWS;
+                int col = GRID_COLS;
+                try {
+                    int row = Integer.parseInt(rowTextField.getText());
+                    int col = Integer.parseInt(colTextField.getText());
+                }catch(NumberFormatException x){
+                    rowTextField.setText(Integer.toString(GRID_ROWS));
+                    colTextField.setText(Integer.toString(GRID_COLS));
+                }
+                setGridSize(row,col);
+            }
+        });
+    }
+
+    public void setGridSize(int row, int col){
+
     }
 
     public void addTileActionListeners() {
