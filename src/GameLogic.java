@@ -89,7 +89,7 @@ public class GameLogic {
         outerloop:
         for (int row = 0; row < buttonArray.length; row++) {
             for (int col = 0; col < buttonArray[row].length; col++) {
-                if ((buttonArray[row][col].getText().equals(Integer.toString(counter)))) {
+                if (buttonArray[row][col].getText().equals( Integer.toString(counter) )) {
 
                     System.out.println("number " + buttonArray[row][col].getText() + " is in the right spot");
 
