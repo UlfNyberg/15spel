@@ -78,7 +78,6 @@ public class GameLogic {
         if (hasMoved)
             moveCounter++;
 
-
         return buttonArray;
     }
 
@@ -87,27 +86,24 @@ public class GameLogic {
 
         int counter = 1;
 
+        outerloop:
         for (int row = 0; row < buttonArray.length; row++) {
             for (int col = 0; col < buttonArray[row].length; col++) {
                 if ((buttonArray[row][col].getText().equals(Integer.toString(counter)))) {
-                    System.out.println("ButtonGetText " + buttonArray[row][col].getText());
+                    System.out.println("number " + buttonArray[row][col].getText() + " is in the right spot");
                     if (counter == (buttonArray.length * buttonArray[0].length - 1)) {
                         System.out.println("Grattis! Du har klarat spelet!");
                         return (true);
                     }
-
                 } else
-                    break;
+                    break outerloop;
                 counter++;
 
             }
         }
-
-        System.out.println(counter + " Countern");
+        System.out.println("Victory Counter " + (counter - 1));
 
         return (false);
-
-
     }
 
     public static int getMoveCounter() {
