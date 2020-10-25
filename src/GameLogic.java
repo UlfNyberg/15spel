@@ -90,9 +90,12 @@ public class GameLogic {
         for (int row = 0; row < buttonArray.length; row++) {
             for (int col = 0; col < buttonArray[row].length; col++) {
                 if ((buttonArray[row][col].getText().equals(Integer.toString(counter)))) {
+
                     System.out.println("number " + buttonArray[row][col].getText() + " is in the right spot");
+
                     if (counter == (buttonArray.length * buttonArray[0].length - 1)) {
                         System.out.println("Grattis! Du har klarat spelet!");
+
                         return (true);
                     }
                 } else
