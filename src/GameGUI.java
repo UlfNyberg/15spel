@@ -12,20 +12,20 @@ import java.awt.event.ActionListener;
  */
 public class GameGUI extends JFrame {
 
-    private final int GRID_ROWS = 4;
-    private final int GRID_COLS = 4;
-    private final int WINDOW_WIDTH = 400;
-    private final int WINDOW_HEIGHT = 400;
+    private int GRID_ROWS = 4;
+    private int GRID_COLS = 4;
+    private int WINDOW_WIDTH = 400;
+    private int WINDOW_HEIGHT = 400;
 
-    JPanel p = new JPanel(new BorderLayout());
-    JPanel gameBoard = new JPanel(new GridLayout(GRID_ROWS, GRID_COLS));
-    JPanel infoButtonField = new JPanel();
+    protected JPanel p = new JPanel(new BorderLayout());
+    protected JPanel gameBoard = new JPanel(new GridLayout(GRID_ROWS, GRID_COLS));
+    protected JPanel infoButtonField = new JPanel();
 
-    JButton newGameButton = new JButton("New Game");
-    JButton sortInRightOrder = new JButton("Sort");
-    JButton exitGameButton = new JButton("Quit");
-    JLabel countTextLabel = new JLabel("Move count: ");
-    JLabel countNr = new JLabel("0");
+    protected JButton newGameButton = new JButton("New Game");
+    protected JButton sortInRightOrder = new JButton("Sort");
+    protected JButton exitGameButton = new JButton("Quit");
+    protected JLabel countTextLabel = new JLabel("Move count: ");
+    protected JLabel countNr = new JLabel("0");
 
     protected JButton[][] buttonArray = new JButton[GRID_ROWS][GRID_COLS];
 
