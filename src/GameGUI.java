@@ -53,7 +53,7 @@ public class GameGUI extends JFrame {
         addInfoButtonActionListeners();
 
         initiateButtonArray();
-        buttonArray = GameLogic.createButtonDisrder(buttonArray);
+        buttonArray = GameLogic.createButtonDisorder(buttonArray);
         updateGameBoard();
 
         p.setLayout(new BorderLayout());
@@ -108,7 +108,7 @@ public class GameGUI extends JFrame {
         newGameButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                buttonArray = GameLogic.createButtonDisrder(buttonArray);
+                buttonArray = GameLogic.createButtonDisorder(buttonArray);
                 GameLogic.resetMoveCounter();
                 updateGameBoard();
             }

@@ -5,7 +5,7 @@ public class GameLogic {
 
     private static int moveCounter = 0;
 
-    public static JButton[][] createButtonDisrder(JButton[][] buttonArray) {
+    public static JButton[][] createButtonDisorder(JButton[][] buttonArray) {
         Random random = new Random();
 
         for (int i = buttonArray.length - 1; i > 0; i--) {
