@@ -129,7 +129,7 @@ public class GameGUI extends JFrame {
     }
 
     public void addTileActionListeners() {
-        ActionListener AL = new ActionListener() {
+        ActionListener listener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 buttonArray = GameLogic.swapWithBlackTile(buttonArray, (JButton) e.getSource());
@@ -143,7 +143,7 @@ public class GameGUI extends JFrame {
         };
         for (int i = 0; i < GRID_ROWS; i++) {
             for (int j = 0; j < GRID_COLS; j++) {
-                buttonArray[i][j].addActionListener(AL);
+                buttonArray[i][j].addActionListener(listener);
 
             }
         }
