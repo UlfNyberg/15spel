@@ -26,13 +26,15 @@ public class GameGUI extends JFrame {
     protected JButton newGameButton = new JButton("New Game");
     protected JButton sortInRightOrder = new JButton("Sort");
     protected JButton exitGameButton = new JButton("Quit");
+    protected JButton resizeGrid = new JButton("Resize");
+
     protected JLabel countTextLabel = new JLabel("Move count: ");
     protected JLabel countNr = new JLabel("0");
-
     protected JLabel rowLabel = new JLabel("Row");
     protected JLabel colLabel = new JLabel("Col");
-    protected JTextField rowTextField = new JTextField(GRID_ROWS);
-    protected JTextField colTextField = new JTextField(GRID_COLS);
+
+    protected JTextField rowTextField = new JTextField(null,"4",2);
+    protected JTextField colTextField = new JTextField(null,"4",2);
 
 
     protected JButton[][] buttonArray = new JButton[GRID_ROWS][GRID_COLS];
@@ -63,6 +65,7 @@ public class GameGUI extends JFrame {
         infoButtonFieldLower.add(rowTextField);
         infoButtonFieldLower.add(colLabel);
         infoButtonFieldLower.add(colTextField);
+        infoButtonFieldLower.add(resizeGrid);
 
         addInfoButtonActionListeners();
         initiateButtonArray();
