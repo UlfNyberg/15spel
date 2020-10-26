@@ -12,13 +12,13 @@ import java.awt.event.ActionListener;
  */
 public class GameGUI extends JFrame {
 
-    private int GRID_ROWS = 4;
-    private int GRID_COLS = 4;
+    private int gridRows = 4;
+    private int gridCols = 4;
     private int WINDOW_WIDTH = 400;
     private int WINDOW_HEIGHT = 400;
 
     protected JPanel p = new JPanel(new BorderLayout());
-    protected JPanel gameBoard = new JPanel(new GridLayout(GRID_ROWS, GRID_COLS));
+    protected JPanel gameBoard = new JPanel(new GridLayout(gridRows, gridCols));
     protected JPanel infoButtonFieldUpper = new JPanel();
     protected JPanel infoButtonFieldLower = new JPanel();
     protected JPanel mainButtonField = new JPanel(new BorderLayout());
@@ -33,10 +33,10 @@ public class GameGUI extends JFrame {
     protected JLabel rowLabel = new JLabel("Row");
     protected JLabel colLabel = new JLabel("Col");
 
-    protected JTextField rowTextField = new JTextField(null,"4",2);
-    protected JTextField colTextField = new JTextField(null,"4",2);
+    protected JTextField rowTextField = new JTextField("4",2);
+    protected JTextField colTextField = new JTextField("4",2);
 
-    protected JButton[][] buttonArray = new JButton[GRID_ROWS][GRID_COLS];
+    protected JButton[][] buttonArray = new JButton[gridRows][gridCols];
 
     GameGUI() {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -66,7 +66,9 @@ public class GameGUI extends JFrame {
         infoButtonFieldLower.add(resizeGridButton);
 
         addInfoButtonActionListeners();
-        initiateButtonArray();
+        buttonArray = initiateButtonArray(gridCols,gridRows);
+        addTileActionListeners();
+
         buttonArray = GameLogic.createButtonDisorder(buttonArray);
         updateGameBoard();
 
@@ -79,19 +81,24 @@ public class GameGUI extends JFrame {
         add(p);
     }
 
-    public void initiateButtonArray() {
+    public JButton[][] initiateButtonArray(int gridRows, int gridCols) {
+
+        this.gridRows = gridRows;
+        this.gridCols = gridCols;
 
         int count = 1;
+        JButton[][] jButtonArray = new JButton[gridRows][gridCols];
+
         //Mac-anpassad svartknapp-metod med try/catch
         try {
             UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
-            for (int i = 0; i < GRID_COLS; i++) {
-                for (int j = 0; j < GRID_ROWS; j++) {
-                    if (!(count == (GRID_COLS * GRID_ROWS)))
-                        buttonArray[i][j] = new JButton(Integer.toString(count));
-                    else if (count == (GRID_ROWS * GRID_COLS)) {
-                        buttonArray[i][j] = new JButton("");
-                        buttonArray[i][j].setBackground(Color.black);
+            for (int y = 0; y < gridRows; y++) {
+                for (int x = 0; x < gridCols; x++) {
+                    if (!(count == (gridCols * gridRows)))
+                        jButtonArray[y][x] = new JButton(Integer.toString(count));
+                    else {
+                        jButtonArray[y][x] = new JButton("");
+                        jButtonArray[y][x].setBackground(Color.black);
                     }
                     count++;
                 }
@@ -99,14 +106,15 @@ public class GameGUI extends JFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        addTileActionListeners();
+
+        return jButtonArray;
     }
 
     public void updateGameBoard() {
         gameBoard.removeAll();
-        for (int i = 0; i < GRID_ROWS; i++) {
-            for (int j = 0; j < GRID_COLS; j++) {
-                gameBoard.add(buttonArray[i][j]);
+        for (int y = 0; y < buttonArray.length; y++) {
+            for (int x = 0;x < buttonArray[y].length; x++) {
+                gameBoard.add(buttonArray[y][x]);
             }
         }
         updateMoveCounter();
@@ -133,7 +141,8 @@ public class GameGUI extends JFrame {
         sortInRightOrder.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                initiateButtonArray();
+                buttonArray = initiateButtonArray(gridRows,gridCols);
+                addTileActionListeners();
                 updateGameBoard();
             }
         });
@@ -146,21 +155,27 @@ public class GameGUI extends JFrame {
         resizeGridButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int row = GRID_ROWS;
-                int col = GRID_COLS;
+                int row = gridRows;
+                int col = gridCols;
                 try {
-                    int row = Integer.parseInt(rowTextField.getText());
-                    int col = Integer.parseInt(colTextField.getText());
+                    row = Integer.parseInt(rowTextField.getText());
+                    col = Integer.parseInt(colTextField.getText());
+                    setGridSize(row,col);
                 }catch(NumberFormatException x){
-                    rowTextField.setText(Integer.toString(GRID_ROWS));
-                    colTextField.setText(Integer.toString(GRID_COLS));
+                    rowTextField.setText(Integer.toString(gridRows));
+                    colTextField.setText(Integer.toString(gridCols));
                 }
-                setGridSize(row,col);
             }
         });
     }
 
     public void setGridSize(int row, int col){
+        buttonArray = initiateButtonArray(row,col);
+        buttonArray = GameLogic.createButtonDisorder(buttonArray);
+        gameBoard.setLayout(new GridLayout(row,col));
+        GridLayout test = new GridLayout();
+        addTileActionListeners();
+        updateGameBoard();
 
     }
 
@@ -177,10 +192,13 @@ public class GameGUI extends JFrame {
                 }
             }
         };
-        for (int i = 0; i < GRID_ROWS; i++) {
-            for (int j = 0; j < GRID_COLS; j++) {
+        System.out.println("buttonArray.lenght = " + buttonArray.length);
+        System.out.println("buttonArray[].lenght = " + buttonArray[0].length);
+        System.out.println(buttonArray[0][0].toString());
+        for (int i = 0; i < gridRows; i++) {
+            for (int j = 0; j < gridCols; j++) {
+                System.out.println("buttonarray add actionlistener i och j = " + i + " " + j);
                 buttonArray[i][j].addActionListener(AL);
-
             }
         }
     }
