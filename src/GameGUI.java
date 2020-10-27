@@ -14,8 +14,8 @@ public class GameGUI extends JFrame {
 
     private int gridRows = 4;
     private int gridCols = 4;
-    private int WINDOW_WIDTH = 400;
-    private int WINDOW_HEIGHT = 400;
+    private final int WINDOW_WIDTH = 400;
+    private final int WINDOW_HEIGHT = 400;
 
     protected JPanel p = new JPanel(new BorderLayout());
     protected JPanel gameBoard = new JPanel(new GridLayout(gridRows, gridCols));
