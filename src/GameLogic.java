@@ -40,12 +40,8 @@ public class GameLogic {
             }
         }
 
-        System.out.println("Black tile x= " + blackTileX);
-        System.out.println("Black tile y= " + blackTileY);
-
         if (blackTileY != 0) {
             if (buttonArray[blackTileY - 1][blackTileX] == selectedTile) {
-                System.out.println("selectedTile är ovanför");
                 buttonArray[blackTileY][blackTileX] = selectedTile;
                 buttonArray[blackTileY - 1][blackTileX] = blackTile;
                 hasMoved = true;
@@ -53,7 +49,6 @@ public class GameLogic {
         }
         if (!(blackTileY >= buttonArray.length - 1)) {
             if (buttonArray[blackTileY + 1][blackTileX] == selectedTile) {
-                System.out.println("selectedTile är nedanför");
                 buttonArray[blackTileY][blackTileX] = selectedTile;
                 buttonArray[blackTileY + 1][blackTileX] = blackTile;
                 hasMoved = true;
@@ -61,7 +56,6 @@ public class GameLogic {
         }
         if (blackTileX != 0) {
             if (buttonArray[blackTileY][blackTileX - 1] == selectedTile) {
-                System.out.println("selectedTile är till vänster");
                 buttonArray[blackTileY][blackTileX] = selectedTile;
                 buttonArray[blackTileY][blackTileX - 1] = blackTile;
                 hasMoved = true;
@@ -69,7 +63,6 @@ public class GameLogic {
         }
         if (!(blackTileX >= buttonArray[0].length - 1)) {
             if (buttonArray[blackTileY][blackTileX + 1] == selectedTile) {
-                System.out.println("selectedTile är till höger");
                 buttonArray[blackTileY][blackTileX] = selectedTile;
                 buttonArray[blackTileY][blackTileX + 1] = blackTile;
                 hasMoved = true;
@@ -80,7 +73,6 @@ public class GameLogic {
             moveCounter++;
             isVictory = checkVictoryCondition(buttonArray);
         }
-
         return buttonArray;
     }
 
@@ -93,22 +85,14 @@ public class GameLogic {
         for (int row = 0; row < buttonArray.length; row++) {
             for (int col = 0; col < buttonArray[row].length; col++) {
                 if (buttonArray[row][col].getText().equals( Integer.toString(counter) )) {
-
-                    System.out.println("number " + buttonArray[row][col].getText() + " is in the right spot");
-
                     if (counter == (buttonArray.length * buttonArray[0].length - 1)) {
-                        System.out.println("Grattis! Du har klarat spelet!");
-
                         return (true);
                     }
                 } else
                     break outerloop;
                 counter++;
-
             }
         }
-        System.out.println("Victory Counter " + (counter - 1));
-
         return (false);
     }
 
@@ -125,4 +109,3 @@ public class GameLogic {
         return isVictory;
     }
 }
-

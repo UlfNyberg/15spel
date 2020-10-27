@@ -65,7 +65,6 @@ public class GameGUI extends JFrame {
     public void initiateButtonArray() {
 
         int count = 1;
-        //Mac-anpassad svartknapp-metod med try/catch
         try {
             UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
             for (int i = 0; i < GRID_COLS; i++) {
