@@ -195,7 +195,7 @@ public class GameGUI extends JFrame {
         for (int i = 0; i < gridRows; i++) {
             for (int j = 0; j < gridCols; j++) {
                 System.out.println("buttonarray add actionlistener i och j = " + i + " " + j);
-                buttonArray[i][j].addActionListener(AL);
+                buttonArray[i][j].addActionListener(listener);
             }
         }
     }
