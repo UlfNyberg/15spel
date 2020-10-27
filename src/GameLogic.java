@@ -4,6 +4,7 @@ import java.util.Random;
 public class GameLogic {
 
     private static int moveCounter = 0;
+    private static boolean isVictory = false;
 
     public static JButton[][] createButtonDisorder(JButton[][] buttonArray) {
         Random random = new Random();
@@ -75,8 +76,10 @@ public class GameLogic {
             }
         }
 
-        if (hasMoved)
+        if (hasMoved) {
             moveCounter++;
+            isVictory = checkVictoryCondition(buttonArray);
+        }
 
         return buttonArray;
     }
@@ -116,6 +119,10 @@ public class GameLogic {
 
     public static void resetMoveCounter() {
         moveCounter = 0;
+    }
+
+    public static boolean getIsVictory (){
+        return isVictory;
     }
 }
 

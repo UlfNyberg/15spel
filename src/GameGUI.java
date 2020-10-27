@@ -179,16 +179,16 @@ public class GameGUI extends JFrame {
     }
 
     public void addTileActionListeners() {
-        ActionListener AL = new ActionListener() {
+        ActionListener listener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 buttonArray = GameLogic.swapWithBlackTile(buttonArray, (JButton) e.getSource());
-                updateGameBoard();
-                if(GameLogic.checkVictoryCondition(buttonArray)){
+                if(GameLogic.getIsVictory()){
                     showVictoryMessage();
                     GameLogic.resetMoveCounter();
-                    updateGameBoard();
+
                 }
+                updateGameBoard();
             }
         };
 
