@@ -173,7 +173,6 @@ public class GameGUI extends JFrame {
         buttonArray = initiateButtonArray(row,col);
         buttonArray = GameLogic.createButtonDisorder(buttonArray);
         gameBoard.setLayout(new GridLayout(row,col));
-        GridLayout test = new GridLayout();
         addTileActionListeners();
         updateGameBoard();
 
