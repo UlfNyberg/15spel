@@ -12,23 +12,31 @@ import java.awt.event.ActionListener;
  */
 public class GameGUI extends JFrame {
 
-    private final int GRID_ROWS = 4;
-    private final int GRID_COLS = 4;
-    private final int WINDOW_WIDTH = 400;
-    private final int WINDOW_HEIGHT = 400;
+    private int gridRows = 4;
+    private int gridCols = 4;
+    private int WINDOW_WIDTH = 400;
+    private int WINDOW_HEIGHT = 400;
 
-    JPanel p = new JPanel(new BorderLayout());
-    JPanel gameBoard = new JPanel(new GridLayout(GRID_ROWS, GRID_COLS));
-    JPanel infoButtonField = new JPanel();
+    protected JPanel p = new JPanel(new BorderLayout());
+    protected JPanel gameBoard = new JPanel(new GridLayout(gridRows, gridCols));
+    protected JPanel infoButtonFieldUpper = new JPanel();
+    protected JPanel infoButtonFieldLower = new JPanel();
+    protected JPanel mainButtonField = new JPanel(new BorderLayout());
 
-    JButton newGameButton = new JButton("New Game");
-    JButton sortInRightOrder = new JButton("Sort");
-    JButton exitGameButton = new JButton("Quit");
-    JLabel countTextLabel = new JLabel("Move count: ");
-    JLabel countNr = new JLabel("0");
+    protected JButton newGameButton = new JButton("New Game");
+    protected JButton sortInRightOrder = new JButton("Sort");
+    protected JButton exitGameButton = new JButton("Quit");
+    protected JButton resizeGridButton = new JButton("Resize");
 
-    protected JButton[][] buttonArray = new JButton[GRID_ROWS][GRID_COLS];
+    protected JLabel countTextLabel = new JLabel("Move count: ");
+    protected JLabel countNr = new JLabel("0");
+    protected JLabel rowLabel = new JLabel("Row");
+    protected JLabel colLabel = new JLabel("Col");
 
+    protected JTextField rowTextField = new JTextField("4",2);
+    protected JTextField colTextField = new JTextField("4",2);
+
+    protected JButton[][] buttonArray = new JButton[gridRows][gridCols];
 
     GameGUI() {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -45,35 +53,51 @@ public class GameGUI extends JFrame {
 
     public void constructGameBoard() {
 
-        infoButtonField.add(newGameButton);
-        infoButtonField.add(sortInRightOrder);
-        infoButtonField.add(countTextLabel);
-        infoButtonField.add(countNr);
-        infoButtonField.add(exitGameButton);
-        addInfoButtonActionListeners();
+        infoButtonFieldUpper.add(newGameButton);
+        infoButtonFieldUpper.add(sortInRightOrder);
+        infoButtonFieldUpper.add(countTextLabel);
+        infoButtonFieldUpper.add(countNr);
+        infoButtonFieldUpper.add(exitGameButton);
 
-        initiateButtonArray();
+        infoButtonFieldLower.add(rowLabel);
+        infoButtonFieldLower.add(rowTextField);
+        infoButtonFieldLower.add(colLabel);
+        infoButtonFieldLower.add(colTextField);
+        infoButtonFieldLower.add(resizeGridButton);
+
+        addInfoButtonActionListeners();
+        buttonArray = initiateButtonArray(gridCols,gridRows);
+        addTileActionListeners();
+
         buttonArray = GameLogic.createButtonDisorder(buttonArray);
         updateGameBoard();
 
+        mainButtonField.add(infoButtonFieldUpper, BorderLayout.NORTH);
+        mainButtonField.add(infoButtonFieldLower, BorderLayout.SOUTH);
+
         p.setLayout(new BorderLayout());
-        p.add(infoButtonField, BorderLayout.SOUTH);
+        p.add(mainButtonField, BorderLayout.SOUTH);
         p.add(gameBoard, BorderLayout.CENTER);
         add(p);
     }
 
-    public void initiateButtonArray() {
+    public JButton[][] initiateButtonArray(int gridRows, int gridCols) {
+
+        this.gridRows = gridRows;
+        this.gridCols = gridCols;
 
         int count = 1;
+        JButton[][] jButtonArray = new JButton[gridRows][gridCols];
+
         try {
             UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
-            for (int i = 0; i < GRID_COLS; i++) {
-                for (int j = 0; j < GRID_ROWS; j++) {
-                    if (!(count == (GRID_COLS * GRID_ROWS)))
-                        buttonArray[i][j] = new JButton(Integer.toString(count));
-                    else if (count == (GRID_ROWS * GRID_COLS)) {
-                        buttonArray[i][j] = new JButton("");
-                        buttonArray[i][j].setBackground(Color.black);
+            for (int y = 0; y < gridRows; y++) {
+                for (int x = 0; x < gridCols; x++) {
+                    if (!(count == (gridCols * gridRows)))
+                        jButtonArray[y][x] = new JButton(Integer.toString(count));
+                    else {
+                        jButtonArray[y][x] = new JButton("");
+                        jButtonArray[y][x].setBackground(Color.black);
                     }
                     count++;
                 }
@@ -81,14 +105,15 @@ public class GameGUI extends JFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        addTileActionListeners();
+
+        return jButtonArray;
     }
 
     public void updateGameBoard() {
         gameBoard.removeAll();
-        for (int i = 0; i < GRID_ROWS; i++) {
-            for (int j = 0; j < GRID_COLS; j++) {
-                gameBoard.add(buttonArray[i][j]);
+        for (int y = 0; y < buttonArray.length; y++) {
+            for (int x = 0;x < buttonArray[y].length; x++) {
+                gameBoard.add(buttonArray[y][x]);
             }
         }
         updateMoveCounter();
@@ -115,7 +140,8 @@ public class GameGUI extends JFrame {
         sortInRightOrder.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                initiateButtonArray();
+                buttonArray = initiateButtonArray(gridRows,gridCols);
+                addTileActionListeners();
                 updateGameBoard();
             }
         });
@@ -125,6 +151,30 @@ public class GameGUI extends JFrame {
                 System.exit(0);
             }
         });
+        resizeGridButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int row = gridRows;
+                int col = gridCols;
+                try {
+                    row = Integer.parseInt(rowTextField.getText());
+                    col = Integer.parseInt(colTextField.getText());
+                    setGridSize(row,col);
+                }catch(NumberFormatException x){
+                    rowTextField.setText(Integer.toString(gridRows));
+                    colTextField.setText(Integer.toString(gridCols));
+                }
+            }
+        });
+    }
+
+    public void setGridSize(int row, int col){
+        buttonArray = initiateButtonArray(row,col);
+        buttonArray = GameLogic.createButtonDisorder(buttonArray);
+        gameBoard.setLayout(new GridLayout(row,col));
+        addTileActionListeners();
+        updateGameBoard();
+
     }
 
     public void addTileActionListeners() {
@@ -140,10 +190,11 @@ public class GameGUI extends JFrame {
                 updateGameBoard();
             }
         };
-        for (int i = 0; i < GRID_ROWS; i++) {
-            for (int j = 0; j < GRID_COLS; j++) {
-                buttonArray[i][j].addActionListener(listener);
 
+        for (int i = 0; i < gridRows; i++) {
+            for (int j = 0; j < gridCols; j++) {
+                System.out.println("buttonarray add actionlistener i och j = " + i + " " + j);
+                buttonArray[i][j].addActionListener(listener);
             }
         }
     }
