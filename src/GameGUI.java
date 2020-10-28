@@ -182,12 +182,13 @@ public class GameGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 buttonArray = GameLogic.swapWithBlackTile(buttonArray, (JButton) e.getSource());
+                updateGameBoard();
                 if(GameLogic.getIsVictory()){
                     showVictoryMessage();
                     GameLogic.resetMoveCounter();
 
                 }
-                updateGameBoard();
+
             }
         };
 
