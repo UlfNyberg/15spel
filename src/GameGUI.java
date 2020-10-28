@@ -186,9 +186,8 @@ public class GameGUI extends JFrame {
                 if(GameLogic.getIsVictory()){
                     showVictoryMessage();
                     GameLogic.resetMoveCounter();
-
+                    updateGameBoard();
                 }
-
             }
         };
 
