@@ -100,7 +100,6 @@ public class GameLogic {
         return moveCounter;
     }
 
-
     public static void resetMoveCounter() {
         moveCounter = 0;
     }
