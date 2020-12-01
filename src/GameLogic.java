@@ -91,6 +91,8 @@ public class GameLogic {
                 } else
                     break outerloop;
                 counter++;
+
+
             }
         }
         return (false);
